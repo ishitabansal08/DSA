@@ -1,25 +1,41 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<int> intersectionArray(int n, int m, vector<int> A, vector<int> B) {
+vector<int> UnionOfArray(int n, int m, vector<int> A, vector<int> B) {
     int i = 0, j = 0;
-    vector<int> ans;
+    vector<int> uni;
 
     while (i < n && j < m) {
-        if (A[i] < B[j]) {
+        if (A[i] <= B[j]) {
+            if (uni.size() == 0 || uni.back() != A[i]) {
+                uni.push_back(A[i]);
+            }
             i++;
-        }
-        else if (A[i] > B[j]) {
-            j++;
-        }
-        else {
-            ans.push_back(A[i]);
-            i++;
+        } else {
+            if (uni.size() == 0 || uni.back() != B[j]) {
+                uni.push_back(B[j]);
+            }
             j++;
         }
     }
 
-    return ans;
+    // remaining elements of A
+    while (i < n) {
+        if (uni.back() != A[i]) {
+            uni.push_back(A[i]);
+        }
+        i++;
+    }
+
+    // remaining elements of B
+    while (j < m) {
+        if (uni.back() != B[j]) {
+            uni.push_back(B[j]);
+        }
+        j++;
+    }
+
+    return uni;
 }
 
 int main() {
@@ -30,7 +46,7 @@ int main() {
     for (int i = 0; i < n; i++) cin >> A[i];
     for (int j = 0; j < m; j++) cin >> B[j];
 
-    vector<int> result = intersectionArray(n, m, A, B);
+    vector<int> result = UnionOfArray(n, m, A, B);
 
     for (int x : result) cout << x << " ";
 
