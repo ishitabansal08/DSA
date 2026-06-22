@@ -8,8 +8,8 @@ This repository contains my **Data Structures and Algorithms (DSA)** practice co
 - C++
 
 ## Purpose
-- Practice DSA concepts
-- Improve problem-solving skills
+- Practice DSA concepts.
+- Improve problem-solving skills.
 
 ---
 
